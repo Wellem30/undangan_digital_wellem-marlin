@@ -71,15 +71,15 @@ body{
 
 .title{
     font-family:'Cormorant Garamond', serif;
-    font-size:clamp(50px, 9vw, 120px);
+    font-size:clamp(50px, 9vw, 70px);
     line-height:1.1;
     margin-bottom:20px;
 }
 
 .subtitle{
-    font-size:16px;
+    font-size:10px;
     letter-spacing:3px;
-    margin-bottom:40px;
+    margin-bottom:30px;
 }
 
 /* BUTTON */
@@ -1293,6 +1293,10 @@ body{
 
     <div class="cover-content">
 
+        <div class="subtitle">
+            Selasa, 18 Mei 2026
+        </div>
+
         <div class="pre-title">
             THE WEDDING OF
         </div>
@@ -1304,9 +1308,14 @@ body{
         </h1>
 
         <div class="subtitle">
-            SPECIAL INVITATION
+            Kepada Yth;
+            <div>
+                Bapak/Ibu/Saudara/i
+            </div>
         </div>
-
+        <h6 class="title2" id="nama_undangan">
+            Tamu Undangan
+        </h6>
         <button class="open-btn" id="openInvitation">
             BUKA UNDANGAN
         </button>
@@ -1414,7 +1423,7 @@ body{
         Mohon konfirmasi kehadiran Anda 💌
     </p>
 
-    <form class="rsvp-form" onsubmit="event.preventDefault(); kirimPesan();" class="mc-form">
+    <form class="rsvp-form" onsubmit="event.preventDefault(); kirimPesan();">
 
         <input type="text" placeholder="Nama Anda" id="nama" required>
 
@@ -1990,6 +1999,17 @@ form.addEventListener("submit", function(e){
     form.reset();
 
 });
+
+const urlParams = new URLSearchParams(window.location.search);
+const nama = urlParams.get("to");
+
+const target = document.getElementById("namaUndangan");
+
+if (nama) {
+    target.textContent = decodeURIComponent(nama);
+} else {
+    target.textContent = "Tamu Undangan";
+}
 
 </script>
 
