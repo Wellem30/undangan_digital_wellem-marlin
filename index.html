@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="icon" href="img/7.jpeg" type="image/png">
+
+<title>The Wedding Of Wellem & Marlin</title>
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- icon font awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:'Montserrat', sans-serif;
+    background:#665001;
+}
+
+/* =========================
+    COVER PAGE
+========================= */
+
+#cover{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.65)),
+    url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1974&auto=format&fit=crop') center center/cover no-repeat;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    z-index:1000;
+
+    transition:1.5s ease;
+}
+
+.cover-content{
+    width:100%;
+    padding:20px;
+    color:white;
+
+    animation:fadeUp 1.5s ease;
+}
+
+.pre-title{
+    letter-spacing:5px;
+    font-size:15px;
+    margin-bottom:20px;
+}
+
+.title{
+    font-family:'Cormorant Garamond', serif;
+    font-size:clamp(50px, 9vw, 120px);
+    line-height:1.1;
+    margin-bottom:20px;
+}
+
+.subtitle{
+    font-size:16px;
+    letter-spacing:3px;
+    margin-bottom:40px;
+}
+
+/* BUTTON */
+
+.open-btn{
+    padding:18px 45px;
+    border:none;
+    outline:none;
+
+    background:rgb(77, 59, 14);
+    backdrop-filter:blur(10px);
+
+    color:white;
+    font-size:14px;
+    letter-spacing:4px;
+    cursor:pointer;
+
+    border:1px solid rgba(255,255,255,.4);
+
+    transition:.4s;
+}
+
+.open-btn:hover{
+    transform:scale(1.05);
+    background:white;
+    color:black;
+}
+
+/* =========================
+    PORTAL LOADING
+========================= */
+
+#loader{
+    position:fixed;
+    inset:0;
+
+    background:black;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+    z-index:9999;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.6s ease;
+}
+
+#loader.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.portal{
+    position:relative;
+    width:220px;
+    height:220px;
+}
+
+.portal span{
+    position:absolute;
+    inset:0;
+
+    border-radius:50%;
+    border:3px solid #f5d27a1e;
+
+    animation:spin 3s linear infinite;
+
+    box-shadow:
+    0 0 25px rgba(245, 210, 122, 0.221),
+    inset 0 0 25px rgba(245, 210, 122, 0.237);
+}
+
+.portal span:nth-child(2){
+    inset:25px;
+    animation-direction:reverse;
+    animation-duration:4s;
+}
+
+.portal span:nth-child(3){
+    inset:50px;
+    animation-duration:2s;
+}
+
+.loader-text{
+    color:white;
+    margin-top:40px;
+
+    letter-spacing:5px;
+    font-size:15px;
+
+    animation:blink 1.5s infinite;
+}
+
+/* =========================
+    MAIN INVITATION
+========================= */
+
+#main{
+    width:100%;
+    height:100vh;
+
+    display:flex;
+
+    overflow-x:auto;
+    overflow-y:hidden;
+
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+
+    scrollbar-width:none;
+}
+
+#main::-webkit-scrollbar{
+    display:none;
+}
+
+.section,
+.hero{
+    min-width:100vw;
+    height:100vh;
+
+    scroll-snap-align:start;
+
+    flex-shrink:0;
+}
+
+p, h1, h2 {
+    color: aliceblue;
+}
+
+/* HERO */
+
+.hero{
+    position:relative;
+    width:100%;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    padding:40px;
+
+    background:
+    linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.7)),
+    url('img/7a.jpeg') center center/cover no-repeat;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.hero-title{
+    font-family:'Cormorant Garamond', serif;
+    font-size:clamp(55px, 10vw, 140px);
+    line-height:1.1;
+}
+
+.hero-date{
+    margin-top:25px;
+    letter-spacing:5px;
+    font-size:15px;
+}
+
+.hero-text{
+    margin-top:35px;
+    font-size:16px;
+    line-height:1.8;
+    opacity:.9;
+}
+
+.hero {
+    perspective: 1000px;
+    overflow: hidden;
+}
+
+.hero-content {
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease;
+}
+
+/* SECTION */
+
+.section{
+    position:relative;
+    min-height:100vh;
+    width:100%;
+
+    display:flex;
+
+    justify-content:flex-start; /* kiri */
+    align-items:flex-start;     /* atas */
+
+    padding:50px 20px;
+
+    background:
+    linear-gradient(rgba(0, 0, 0, 0.091), rgba(0, 0, 0, 0.091)),
+    url('img/6.jpeg') center center/cover no-repeat;
+
+    background-attachment:fixed;
+    background-size:cover;
+    background-position:center;
+}
+
+.section::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:rgba(0, 0, 0, 0);
+    pointer-events:none;
+}
+
+#about .card{
+    width:100%;
+    max-width:1000px;
+
+    background:rgba(99, 70, 21, 0);
+
+    border-radius:30px;
+
+    padding:60px 30px;
+
+    text-align:left; /* ubah jadi kiri */
+
+    margin-top:40px;
+    margin-left:40px;
+}
+
+#gallery{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#gallery .card, #rsvp .card{
+    width:100%;
+    max-width:1000px;
+
+    background:rgba(99, 70, 21, 0);
+
+    border-radius:30px;
+
+    padding:60px 30px;
+
+    text-align:center;
+
+    margin:0 auto; /* otomatis center */
+}
+
+#contact{
+    display:flex;
+    justify-content:flex-end; /* dorong ke kanan */
+    align-items:right;
+}
+
+#contact .card{
+    width:100%;
+    max-width:1000px;
+
+    background:rgba(99, 70, 21, 0);
+
+    border-radius:30px;
+
+    padding:60px 30px;
+
+    text-align:right;
+
+    margin-right:40px;
+}
+
+.gallery-grid {
+    width:100%;
+    max-width:1000px;
+
+    background:rgba(99, 70, 21, 0);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    border-radius:30px;
+
+    padding:60px 30px;
+
+    text-align:center;
+}
+
+.card h2{
+    font-family:'Cormorant Garamond', serif;
+    font-size:55px;
+    margin-bottom:25px;
+}
+
+.card p{
+    line-height:2;
+    opacity:.9;
+}
+
+/* ANIMATION */
+
+@keyframes spin{
+    from{
+        transform:rotate(0deg) scale(1);
+    }
+    to{
+        transform:rotate(360deg) scale(1.1);
+    }
+}
+
+@keyframes blink{
+    0%,100%{
+        opacity:.4;
+    }
+    50%{
+        opacity:1;
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .card{
+        padding:45px 25px;
+    }
+
+    .card h2{
+        font-size:42px;
+    }
+
+    .hero-text{
+        font-size:15px;
+    }
+
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    margin:0;
+    overflow:hidden;
+    background:black;
+}
+
+/* FULLSCREEN FIX */
+:fullscreen{
+    width:100vw;
+    height:100vh;
+}
+
+:-webkit-full-screen{
+    width:100vw;
+    height:100vh;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+
+    display:flex;
+    gap:10px;
+
+    background:rgba(0,0,0,.4);
+    backdrop-filter:blur(15px);
+
+    padding:12px 18px;
+    border-radius:50px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    z-index:9999;
+}
+
+.nav-item{
+    color:white;
+    text-decoration:none;
+    font-size:13px;
+    letter-spacing:1px;
+
+    padding:8px 12px;
+    border-radius:20px;
+
+    transition:.3s;
+    opacity:.7;
+}
+
+.nav-item:hover{
+    opacity:1;
+    background:rgba(255,255,255,.1);
+}
+
+.nav-item.active{
+    background:white;
+    color:black;
+    opacity:1;
+}
+
+.bottom-nav{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+
+    display:flex;
+    gap:10px;
+
+    background:rgba(0,0,0,.4);
+    backdrop-filter:blur(15px);
+
+    padding:12px 18px;
+    border-radius:50px;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    z-index:9999;
+
+    opacity:0;
+    visibility:hidden;
+    transform:translateX(-50%) translateY(30px);
+    transition:.6s ease;
+}
+
+/* ketika aktif */
+.bottom-nav.show{
+    opacity:1;
+    visibility:visible;
+    transform:translateX(-50%) translateY(0);
+}
+
+.music-btn{
+    position:fixed;
+    right:20px;
+    bottom:90px;
+
+    width:50px;
+    height:50px;
+
+    border-radius:50%;
+    border:none;
+
+    background:rgba(0,0,0,.5);
+    backdrop-filter:blur(10px);
+
+    color:white;
+    font-size:20px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+
+    z-index:99999;
+
+    border:1px solid rgba(255,255,255,.2);
+
+    transition:.3s ease;
+}
+
+.music-btn:hover{
+    transform:scale(1.1);
+    background:rgba(255,255,255,.2);
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:10px;
+    margin-top:20px;
+}
+
+.gallery-grid img{
+    width:100%;
+    border-radius:15px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.gallery-grid img:hover{
+    transform:scale(1.05);
+}
+
+/* MODAL */
+.gallery-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.95);
+
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+    z-index:99999;
+}
+
+.gallery-modal.active{
+    display:flex;
+}
+
+.gallery-modal img{
+    max-width:90%;
+    max-height:80%;
+    border-radius:20px;
+    box-shadow:0 0 30px rgba(255,255,255,.2);
+}
+
+/* BUTTONS */
+.g-btn{
+    position:absolute;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.3);
+    color:white;
+
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+
+    backdrop-filter:blur(10px);
+    transition:.3s;
+}
+
+.g-btn:hover{
+    background:white;
+    color:black;
+}
+
+.g-close{
+    top:20px;
+    right:20px;
+}
+
+.g-prev{
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.g-next{
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+/* NAVBAR OUTER */
+.bottom-nav{
+    position:fixed;
+    bottom:15px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:90vw;
+    max-width:420px;
+
+    background:rgba(0,0,0,.35);
+    backdrop-filter:blur(18px);
+
+    border-radius:50px;
+    border:1px solid rgba(255,255,255,.15);
+
+    z-index:9999;
+
+    overflow:hidden;
+
+    transition:.5s ease;
+}
+
+/* SCROLL AREA */
+.nav-track{
+    display:flex;
+    gap:14px;
+
+    overflow-x:auto;
+    scroll-snap-type:x mandatory; /* 🔥 SNAP SCROLL */
+    scroll-behavior:smooth;
+
+    padding:12px 14px;
+}
+
+/* hide scrollbar */
+.nav-track::-webkit-scrollbar{
+    display:none;
+}
+
+.nav-track{
+    scrollbar-width:none;
+}
+
+/* ITEM */
+.nav-item{
+    flex:0 0 auto;
+
+    scroll-snap-align:center; /* 🔥 SNAP POINT */
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    gap:4px;
+
+    font-size:10px;
+    text-decoration:none;
+    color:white;
+
+    opacity:.5;
+    transition:.3s ease;
+
+    min-width:60px;
+}
+
+.nav-item i{
+    font-size:18px;
+}
+
+/* ACTIVE */
+.nav-item.active{
+    opacity:1;
+    color:#ffd27a;
+    transform:scale(1.05);
+}
+
+.nav-item.active i{
+    filter:drop-shadow(0 0 8px rgba(255,210,122,.8));
+}
+
+/* ======================
+   AUTO HIDE ON SCROLL
+====================== */
+
+.bottom-nav.hide{
+    transform:translateX(-50%) translateY(120px);
+    opacity:0;
+}
+
+/* ======================
+   SCROLL INDICATOR (DOT)
+====================== */
+
+.bottom-nav::after{
+    content:"";
+    position:absolute;
+    bottom:6px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:40px;
+    height:3px;
+    border-radius:10px;
+
+    background:rgba(255,255,255,.2);
+}
+
+/* ACTIVE GLOW PREMIUM */
+.nav-item.active{
+    opacity:1;
+    color:#ffd27a;
+    transform:scale(1.1);
+    position:relative;
+}
+
+/* ICON GLOW EFFECT */
+.nav-item.active i{
+    color:#ffd27a;
+    text-shadow:
+        0 0 8px rgba(255,210,122,.8),
+        0 0 20px rgba(255,210,122,.6),
+        0 0 40px rgba(255,210,122,.4);
+
+    animation:glowPulse 1.5s ease-in-out infinite;
+}
+
+/* PULSE ANIMATION */
+@keyframes glowPulse{
+    0%,100%{
+        transform:scale(1);
+        filter:brightness(1);
+    }
+    50%{
+        transform:scale(1.15);
+        filter:brightness(1.4);
+    }
+}
+
+#rsvp{
+    overflow-y:auto;
+
+    align-items:flex-start;
+
+    padding-top:100px;
+    padding-bottom:140px;
+}
+
+/* SCROLL AREA RSVP */
+#rsvp::-webkit-scrollbar{
+    width:6px;
+}
+
+#rsvp::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,.25);
+    border-radius:20px;
+}
+
+/* RSVP CARD */
+.rsvp-card{
+    width:100%;
+    max-width:700px;
+
+    min-height:max-content;
+
+    margin:auto;
+
+    background:rgba(255,255,255,.06);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:30px;
+
+    padding:40px 25px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+
+/* TITLE */
+.rsvp-card h2{
+    font-family:'Cormorant Garamond', serif;
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+/* SUB TEXT */
+.rsvp-card .sub{
+    margin-bottom:30px;
+    opacity:.8;
+}
+
+/* FORM */
+.rsvp-form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+/* INPUT */
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea{
+    padding:15px 18px;
+
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,.2);
+
+    background:rgba(0,0,0,.3);
+    color:white;
+
+    outline:none;
+
+    font-size:14px;
+}
+
+/* TEXTAREA */
+.rsvp-form textarea{
+    min-height:120px;
+    resize:none;
+}
+
+/* BUTTON */
+.rsvp-form button{
+    padding:15px;
+
+    border:none;
+    border-radius:15px;
+
+    background:linear-gradient(135deg,#d4af37,#f5d27a);
+
+    color:black;
+    font-weight:bold;
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    transition:.3s ease;
+}
+
+.rsvp-form button:hover{
+    transform:scale(1.03);
+    box-shadow:0 10px 30px rgba(245,210,122,.4);
+}
+
+@media(max-width:768px){
+
+    #rsvp{
+        padding-top:70px;
+        padding-bottom:180px;
+    }
+
+    .wish-list{
+        max-height:250px;
+    }
+
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+    .rsvp-card h2{
+        font-size:40px;
+    }
+
+}
+
+.gallery-grid{
+    max-height:70vh;
+
+    overflow-y:auto;
+
+    padding-right:5px;
+}
+
+/* SCROLLBAR PREMIUM */
+.gallery-grid::-webkit-scrollbar{
+    width:6px;
+}
+
+.gallery-grid::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,.3);
+    border-radius:10px;
+}
+
+.particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.particles span {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 210, 122, 0.5);
+    border-radius: 50%;
+    animation: floatUp 10s linear infinite;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+    }
+}
+
+.section, .hero {
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    will-change: transform;
+}
+
+#cover{
+    perspective: 1000px;
+    overflow:hidden;
+}
+
+.cover-content{
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease;
+    will-change: transform;
+}
+
+.cover-content{
+    animation: floatCover 6s ease-in-out infinite;
+}
+
+@keyframes floatCover{
+    0%,100%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-10px);
+    }
+}
+
+/* =========================
+   PORTAL CINEMATIC
+========================= */
+
+.portal-transition{
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:black;
+
+    z-index:99999;
+
+    opacity:0;
+    visibility:hidden;
+
+    overflow:hidden;
+}
+
+.portal-transition.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.portal-ring{
+    width:120px;
+    height:120px;
+
+    border-radius:50%;
+
+    border:6px solid rgba(255,215,120,.9);
+
+    box-shadow:
+        0 0 30px rgba(255,215,120,.9),
+        0 0 80px rgba(255,215,120,.7),
+        0 0 150px rgba(255,215,120,.5);
+
+    animation:
+        portalZoom 2s ease-in-out forwards,
+        portalSpin 3s linear infinite;
+}
+
+/* PORTAL MEMBESAR */
+@keyframes portalZoom{
+
+    0%{
+        transform:scale(.2);
+        opacity:0;
+    }
+
+    30%{
+        opacity:1;
+    }
+
+    100%{
+        transform:scale(30);
+        opacity:1;
+    }
+
+}
+
+/* SPIN */
+@keyframes portalSpin{
+    from{
+        rotate:0deg;
+    }
+    to{
+        rotate:360deg;
+    }
+}
+
+/* =========================
+   LIVE WEDDING CHAT
+========================= */
+
+.wish-box{
+    margin-top:40px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.3);
+}
+
+/* TITLE */
+.wish-title{
+    font-size:18px;
+    letter-spacing:2px;
+    margin-bottom:20px;
+
+    color:#ffd27a;
+}
+
+/* CHAT AREA */
+.wish-list{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+
+    max-height:300px;
+    overflow-y:auto;
+
+    padding-right:5px;
+}
+
+/* SCROLLBAR */
+.wish-list::-webkit-scrollbar{
+    width:5px;
+}
+
+.wish-list::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,.2);
+    border-radius:20px;
+}
+
+/* ITEM */
+.wish-item{
+    display:flex;
+    gap:12px;
+
+    align-items:flex-start;
+
+    animation:fadeWish .6s ease;
+}
+
+/* AVATAR */
+.wish-avatar{
+    width:45px;
+    height:45px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(135deg,#d4af37,#f5d27a);
+
+    color:black;
+    font-weight:bold;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    flex-shrink:0;
+
+    box-shadow:
+        0 0 20px rgba(245,210,122,.4);
+}
+
+/* CHAT BUBBLE */
+.wish-content{
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    padding:14px 16px;
+
+    border-radius:18px;
+
+    text-align:left;
+
+    flex:1;
+
+    backdrop-filter:blur(10px);
+}
+
+/* NAME */
+.wish-name{
+    font-weight:bold;
+    color:#ffd27a;
+
+    margin-bottom:6px;
+}
+
+/* PRESENT */
+.wish-present{
+    line-height:1.7;
+    font-size:7px;
+    color:rgb(247, 255, 199);
+}
+
+/* MESSAGE */
+.wish-message{
+    line-height:1.7;
+    font-size:14px;
+    color:white;
+}
+
+/* ANIMATION */
+@keyframes fadeWish{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.95);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+.wish-list{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+
+    max-height:350px; /* tinggi area chat */
+
+    overflow-y:auto;
+
+    padding-right:8px;
+
+    scroll-behavior:smooth;
+}
+
+/* =========================
+   SCROLLBAR PREMIUM CHAT
+========================= */
+
+.wish-list::-webkit-scrollbar{
+    width:6px;
+}
+
+.wish-list::-webkit-scrollbar-track{
+    background:rgba(255,255,255,.05);
+    border-radius:20px;
+}
+
+.wish-list::-webkit-scrollbar-thumb{
+    background:
+    linear-gradient(
+        180deg,
+        rgba(245,210,122,.8),
+        rgba(212,175,55,.6)
+    );
+
+    border-radius:20px;
+}
+
+.wish-list::-webkit-scrollbar-thumb:hover{
+    background:
+    linear-gradient(
+        180deg,
+        rgba(255,230,150,1),
+        rgba(212,175,55,.9)
+    );
+}
+
+.wish-box{
+    position:relative;
+    overflow:hidden;
+}
+
+.wish-box::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.04),
+        transparent
+    );
+
+    animation:shineMove 6s linear infinite;
+
+    pointer-events:none;
+}
+
+@keyframes shineMove{
+    from{
+        transform:translateX(-100%);
+    }
+    to{
+        transform:translateX(100%);
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+    COVER
+========================= -->
+
+<section id="cover">
+
+    <div class="cover-content">
+
+        <div class="pre-title">
+            THE WEDDING OF
+        </div>
+
+        <h1 class="title">
+            Wellem <br>
+            & <br>
+            Marlin
+        </h1>
+
+        <div class="subtitle">
+            SPECIAL INVITATION
+        </div>
+
+        <button class="open-btn" id="openInvitation">
+            BUKA UNDANGAN
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =========================
+    LOADER
+========================= -->
+
+<div id="loader">
+
+    <div class="portal">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="loader-text">
+        MEMBUKA UNDANGAN...
+    </div>
+
+</div>
+
+<div class="portal-transition" id="portalTransition">
+    <div class="portal-ring"></div>
+</div>
+
+<!-- =========================
+    AUDIO
+========================= -->
+
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<!-- =========================
+    MAIN WEBSITE
+========================= -->
+
+<main id="main">
+
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <div class="pre-title" style="color: aliceblue;">
+                WE ARE GETTING MARRIED
+            </div>
+
+            <h1 class="hero-title">
+                Wellem <br>
+                & Marlin
+            </h1>
+
+            <div class="hero-date" style="color: aliceblue;">
+                20 DESEMBER 2026
+            </div>
+
+            <p class="hero-text" style="color: aliceblue;">
+                Dengan penuh sukacita kami mengundang Bapak/Ibu/Saudara/i
+                untuk hadir dalam acara pernikahan kami.
+            </p>
+
+        </div>
+
+    </section>
+    <section id="about" class="section">
+    <div class="card">
+        <h2>About Us</h2>
+        <p>
+            Kami adalah Wellem & Marlin, dua hati yang dipersatukan dalam cinta dan kasih Tuhan.
+        </p>
+    </div>
+    </section>
+<section id="gallery" class="section">
+<div class="card">
+    <h2>Gallery</h2>
+
+    <div class="gallery-grid">
+
+        <img src="img/1.jpeg" onclick="openGallery(0)">
+        <img src="img/4.jpeg" onclick="openGallery(1)">
+        <img src="img/2.jpeg" onclick="openGallery(2)">
+        <img src="img/3.jpeg" onclick="openGallery(3)">
+
+    </div>
+
+</div>
+</section>
+
+<section id="rsvp" class="section">
+
+<div class="card rsvp-card">
+
+    <h2>Respon Undangan</h2>
+    <p class="sub">
+        Mohon konfirmasi kehadiran Anda 💌
+    </p>
+
+    <form class="rsvp-form">
+
+        <input type="text" placeholder="Nama Anda" required>
+
+        <select required>
+            <option value="">Apakah Anda Hadir?</option>
+            <option value="hadir">Saya Hadir</option>
+            <option value="tidak">Tidak Bisa Hadir</option>
+        </select>
+
+        <textarea placeholder="Ucapan / Doa untuk kami"></textarea>
+
+        <button type="submit">Kirim Respon</button>
+
+    </form>
+
+        <!-- LIVE WISHES -->
+    <div class="wish-box">
+
+        <div class="wish-title">
+            💌 Ucapan & Doa
+        </div>
+
+        <div class="wish-list" id="wishList">
+
+            <!-- pesan otomatis -->
+            <div class="wish-item">
+                <div class="wish-avatar">W</div>
+
+                <div class="wish-content">
+                    <div class="wish-name">
+                        Wellem
+                    </div>
+
+                    <div class="wish-present">
+                        Hadir
+                    </div>
+
+                    <div class="wish-message">
+                        Selamat menempuh hidup baru ✨
+                    </div>
+                </div>
+            </div>
+            <div class="wish-item">
+                <div class="wish-avatar">W</div>
+
+                <div class="wish-content">
+                    <div class="wish-name">
+                        Wellem
+                    </div>
+
+                    <div class="wish-present">
+                        Hadir
+                    </div>
+
+                    <div class="wish-message">
+                        Selamat menempuh hidup baru ✨
+                    </div>
+                </div>
+            </div>
+            <div class="wish-item">
+                <div class="wish-avatar">W</div>
+
+                <div class="wish-content">
+                    <div class="wish-name">
+                        Wellem
+                    </div>
+
+                    <div class="wish-present">
+                        Hadir
+                    </div>
+
+                    <div class="wish-message">
+                        Selamat menempuh hidup baru ✨
+                    </div>
+                </div>
+            </div>
+            <div class="wish-item">
+                <div class="wish-avatar">W</div>
+
+                <div class="wish-content">
+                    <div class="wish-name">
+                        Wellem
+                    </div>
+
+                    <div class="wish-present">
+                        Hadir
+                    </div>
+
+                    <div class="wish-message">
+                        Selamat menempuh hidup baru ✨
+                    </div>
+                </div>
+            </div>
+
+</section>
+    <section id="contact" class="section">
+    <div class="card">
+        <h2>Contact</h2>
+        <p>
+            Wellem: 08xx xxxx xxxx <br>
+            Marlin: 08xx xxxx xxxx <br><br>
+            Email: wedding@example.com
+        </p>
+    </div>
+    </section>
+    <section id="gift" class="section">
+    <div class="card">
+        <h2>Wedding Gift</h2>
+        <p>
+            Bank BCA: 1234567890<br>
+            a.n Wellem Selan<br><br>
+            Terima kasih atas doa dan perhatian Anda 💖
+        </p>
+    </div>
+    </section>
+</main>
+<!-- BOTTOM NAVIGATION -->
+<nav class="bottom-nav" id="bottomNav">
+
+    <div class="nav-track">
+        <a href="#home" class="nav-item active"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="#about" class="nav-item"><i class="fa-solid fa-heart"></i><span>About</span></a>
+        <a href="#gallery" class="nav-item"><i class="fa-solid fa-image"></i><span>Gallery</span></a>
+        <a href="#rsvp" class="nav-item"><i class="fa-solid fa-envelope"></i><span>RSVP</span></a>
+        <a href="#contact" class="nav-item"><i class="fa-solid fa-phone"></i><span>Contact</span></a>
+        <a href="#gift" class="nav-item"><i class="fa-solid fa-gift"></i><span>Gift</span></a>
+
+        <!-- kalau mau tambah menu tinggal tambah di sini -->
+
+    </div>
+
+</nav>
+
+<audio id="bgMusic" loop>
+    <source src="wedding.mp3" type="audio/mp3">
+</audio>
+
+<!-- MUSIC BUTTON -->
+<button id="musicToggle" class="music-btn" style="margin-bottom: 11%;">
+    🔊
+</button>
+
+<!-- GALLERY MODAL -->
+<div class="gallery-modal" id="galleryModal">
+
+    <button class="g-btn g-close" onclick="closeGallery()">✖</button>
+    <button class="g-btn g-prev" onclick="prevImage()">❮</button>
+    <button class="g-btn g-next" onclick="nextImage()">❯</button>
+
+    <img id="galleryImage" src="">
+
+</div>
+
+<div class="particles"></div>
+
+<!-- <script>
+
+const btn = document.getElementById("openInvitation");
+const loader = document.getElementById("loader");
+const cover = document.getElementById("cover");
+
+btn.addEventListener("click", async () => {
+
+    // FULLSCREEN
+    if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+    }
+
+    // PLAY MUSIC
+    try {
+        music.currentTime = 0; // mulai dari awal
+        await music.play();
+    } catch (e) {
+        console.log("Music blocked:", e);
+    }
+
+    // SHOW LOADER
+    loader.classList.add("active");
+
+    setTimeout(() => {
+
+        cover.style.opacity = "0";
+        cover.style.visibility = "hidden";
+
+        loader.classList.remove("active");
+
+        nav.classList.add("show");
+
+        document.body.style.overflow = "auto";
+
+    }, 3000);
+
+});
+
+</script> -->
+
+<script>
+
+const btn = document.getElementById("openInvitation");
+const loader = document.getElementById("loader");
+const cover = document.getElementById("cover");
+const portal = document.getElementById("portalTransition");
+
+btn.addEventListener("click", async () => {
+
+    // fullscreen
+    if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+    }
+
+    // play music
+    try{
+        music.currentTime = 0;
+        await music.play();
+    }catch(e){
+        console.log(e);
+    }
+
+    // loader
+    loader.classList.add("active");
+
+    setTimeout(() => {
+
+        loader.classList.remove("active");
+
+        // tampil portal
+        portal.classList.add("active");
+
+        setTimeout(() => {
+
+            // hilangkan cover
+            cover.style.opacity = "0";
+            cover.style.visibility = "hidden";
+
+            // tampil navbar
+            nav.classList.add("show");
+
+            // aktifkan scroll
+            document.body.style.overflow = "auto";
+
+            // hilangkan portal
+            setTimeout(() => {
+                portal.style.display = "none";
+            }, 1200);
+
+        }, 1200);
+
+    }, 2000);
+
+});
+
+</script>
+
+<script>
+
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicToggle");
+
+let isPlaying = true;
+
+// default icon
+musicBtn.textContent = "🔊";
+
+musicBtn.addEventListener("click", () => {
+
+    if (music.paused) {
+        music.play();
+        isPlaying = true;
+        musicBtn.textContent = "🔊";
+    } else {
+        music.pause();
+        isPlaying = false;
+        musicBtn.textContent = "🔇";
+    }
+
+});
+
+</script>
+
+<script>
+
+const images = [
+    "img/1.jpeg",
+    "img/2.jpeg",
+    "img/3.jpeg",
+    "img/4.jpeg"
+];
+
+let currentIndex = 0;
+
+const modal = document.getElementById("galleryModal");
+const modalImg = document.getElementById("galleryImage");
+
+function openGallery(index){
+    currentIndex = index;
+    modal.classList.add("active");
+    modalImg.src = images[currentIndex];
+}
+
+function closeGallery(){
+    modal.classList.remove("active");
+}
+
+function nextImage(){
+    currentIndex = (currentIndex + 1) % images.length;
+    modalImg.src = images[currentIndex];
+}
+
+function prevImage(){
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    modalImg.src = images[currentIndex];
+}
+
+/* optional: close kalau klik background */
+modal.addEventListener("click", (e) => {
+    if(e.target === modal){
+        closeGallery();
+    }
+});
+
+</script>
+
+<script>
+
+const nav = document.getElementById("bottomNav");
+const navItems = document.querySelectorAll(".nav-item");
+const sections = document.querySelectorAll("section");
+
+/* =========================
+   AUTO HIDE ON SCROLL
+========================= */
+
+let lastScrollY = window.scrollY;
+
+window.addEventListener("scroll", () => {
+
+    /* NAVBAR AUTO HIDE */
+    if (window.scrollY > lastScrollY) {
+        nav.classList.add("hide");
+    } else {
+        nav.classList.remove("hide");
+    }
+
+    lastScrollY = window.scrollY;
+
+    /* =========================
+       DETECT ACTIVE SECTION
+    ========================= */
+
+    let currentSection = "";
+
+    sections.forEach(section => {
+
+        const top = section.offsetTop - 200;
+        const bottom = top + section.clientHeight;
+
+        if (
+            window.scrollY >= top &&
+            window.scrollY < bottom
+        ) {
+            currentSection = section.id;
+        }
+
+    });
+
+    /* UPDATE ACTIVE NAV */
+    navItems.forEach(item => {
+
+        item.classList.remove("active");
+
+        if (item.getAttribute("href") === "#" + currentSection) {
+            item.classList.add("active");
+
+            /* AUTO CENTER NAV ITEM */
+            item.scrollIntoView({
+                behavior: "smooth",
+                inline: "center",
+                block: "nearest"
+            });
+        }
+
+    });
+
+});
+
+/* =========================
+   CLICK NAVIGATION
+========================= */
+
+navItems.forEach(item => {
+
+    item.addEventListener("click", (e) => {
+
+        e.preventDefault();
+
+        /* REMOVE ACTIVE */
+        navItems.forEach(i => i.classList.remove("active"));
+
+        /* ACTIVE CLICK */
+        item.classList.add("active");
+
+        /* TARGET SECTION */
+        const targetID = item.getAttribute("href");
+        const target = document.querySelector(targetID);
+
+        /* SMOOTH SCROLL */
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+        /* CENTER ACTIVE NAV */
+        item.scrollIntoView({
+            behavior: "smooth",
+            inline: "center",
+            block: "nearest"
+        });
+
+    });
+
+});
+
+</script>
+
+<script>
+const hero = document.querySelector(".hero");
+const heroContent = document.querySelector(".hero-content");
+
+hero.addEventListener("mousemove", (e) => {
+    const x = (window.innerWidth / 2 - e.pageX) / 25;
+    const y = (window.innerHeight / 2 - e.pageY) / 25;
+
+    heroContent.style.transform = `
+        rotateY(${x}deg)
+        rotateX(${y}deg)
+        translateZ(30px)
+    `;
+});
+
+hero.addEventListener("mouseleave", () => {
+    heroContent.style.transform = `
+        rotateY(0deg)
+        rotateX(0deg)
+        translateZ(0px)
+    `;
+});
+
+const particles = document.querySelector(".particles");
+
+for (let i = 0; i < 30; i++) {
+    const span = document.createElement("span");
+
+    span.style.left = Math.random() * 100 + "vw";
+    span.style.animationDuration = (5 + Math.random() * 10) + "s";
+    span.style.opacity = Math.random();
+
+    particles.appendChild(span);
+}
+
+const coverSection = document.getElementById("cover");
+const coverContent = document.querySelector(".cover-content");
+
+coverSection.addEventListener("mousemove", (e) => {
+
+    const x = (window.innerWidth / 2 - e.pageX) / 35;
+    const y = (window.innerHeight / 2 - e.pageY) / 35;
+
+    coverContent.style.transform = `
+        rotateY(${x}deg)
+        rotateX(${y}deg)
+        translateZ(30px)
+    `;
+});
+
+coverSection.addEventListener("mouseleave", () => {
+    coverContent.style.transform = `
+        rotateY(0deg)
+        rotateX(0deg)
+        translateZ(0px)
+    `;
+});
+
+if (window.innerWidth > 768) {
+   // jalankan efek 3D
+}
+
+</script>
+
+<script>
+
+const form = document.querySelector(".rsvp-form");
+const wishList = document.getElementById("wishList");
+
+form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    // ambil data
+    const name = form.querySelector("input").value;
+    const message = form.querySelector("textarea").value;
+
+    // avatar huruf awal
+    const firstLetter = name.charAt(0).toUpperCase();
+
+    // buat element baru
+    const wishItem = document.createElement("div");
+    wishItem.classList.add("wish-item");
+
+    wishItem.innerHTML = `
+        <div class="wish-avatar">
+            ${firstLetter}
+        </div>
+
+        <div class="wish-content">
+            <div class="wish-name">
+                ${name}
+            </div>
+
+            <div class="wish-message">
+                ${message || "Turut berbahagia untuk kalian 💖"}
+            </div>
+        </div>
+    `;
+
+    // tambah ke list
+    wishList.prepend(wishItem);
+
+    // auto scroll atas
+    wishList.scrollTop = 0;
+
+    // reset form
+    form.reset();
+
+});
+
+</script>
+
+</body>
+</html>
