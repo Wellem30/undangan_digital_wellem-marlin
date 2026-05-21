@@ -1409,17 +1409,17 @@ body{
         Mohon konfirmasi kehadiran Anda 💌
     </p>
 
-    <form class="rsvp-form">
+    <form class="rsvp-form" onsubmit="event.preventDefault(); kirimPesan();" class="mc-form">
 
-        <input type="text" placeholder="Nama Anda" required>
+        <input type="text" placeholder="Nama Anda" id="nama" required>
 
-        <select required>
+        <select id="kehadiran" required>
             <option value="">Apakah Anda Hadir?</option>
             <option value="hadir">Saya Hadir</option>
             <option value="tidak">Tidak Bisa Hadir</option>
         </select>
 
-        <textarea placeholder="Ucapan / Doa untuk kami"></textarea>
+        <textarea id="ucapan" placeholder="Ucapan / Doa untuk kami"></textarea>
 
         <button type="submit">Kirim Respon</button>
 
@@ -1435,74 +1435,7 @@ body{
         <div class="wish-list" id="wishList">
 
             <!-- pesan otomatis -->
-            <div class="wish-item">
-                <div class="wish-avatar">W</div>
-
-                <div class="wish-content">
-                    <div class="wish-name">
-                        Wellem
-                    </div>
-
-                    <div class="wish-present">
-                        Hadir
-                    </div>
-
-                    <div class="wish-message">
-                        Selamat menempuh hidup baru ✨
-                    </div>
-                </div>
-            </div>
-            <div class="wish-item">
-                <div class="wish-avatar">W</div>
-
-                <div class="wish-content">
-                    <div class="wish-name">
-                        Wellem
-                    </div>
-
-                    <div class="wish-present">
-                        Hadir
-                    </div>
-
-                    <div class="wish-message">
-                        Selamat menempuh hidup baru ✨
-                    </div>
-                </div>
-            </div>
-            <div class="wish-item">
-                <div class="wish-avatar">W</div>
-
-                <div class="wish-content">
-                    <div class="wish-name">
-                        Wellem
-                    </div>
-
-                    <div class="wish-present">
-                        Hadir
-                    </div>
-
-                    <div class="wish-message">
-                        Selamat menempuh hidup baru ✨
-                    </div>
-                </div>
-            </div>
-            <div class="wish-item">
-                <div class="wish-avatar">W</div>
-
-                <div class="wish-content">
-                    <div class="wish-name">
-                        Wellem
-                    </div>
-
-                    <div class="wish-present">
-                        Hadir
-                    </div>
-
-                    <div class="wish-message">
-                        Selamat menempuh hidup baru ✨
-                    </div>
-                </div>
-            </div>
+        </div>
 
 </section>
     <section id="contact" class="section">
@@ -1605,6 +1538,114 @@ btn.addEventListener("click", async () => {
 });
 
 </script> -->
+<script>
+
+// =========================
+// FIREBASE CONFIG
+// =========================
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDUNnVFHenRWXd3zi6Y9U3qMIQUm6_vIdo",
+    authDomain: "undangan-ditigal-wellem-marlin.firebaseapp.com",
+    databaseURL: "https://undangan-ditigal-wellem-marlin-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "undangan-ditigal-wellem-marlin",
+    storageBucket: "undangan-ditigal-wellem-marlin.firebasestorage.app",
+    messagingSenderId: "943996712876",
+    appId: "1:943996712876:web:40171cc2c4afcbb9a9ec09",
+    measurementId: "G-D18GRLRJ7K"
+};
+
+// INIT
+firebase.initializeApp(firebaseConfig);
+
+// DATABASE
+const db = firebase.database().ref("rsvp");
+
+// =========================
+// KIRIM PESAN
+// =========================
+
+function kirimPesan(){
+
+    const nama = document.getElementById("nama").value;
+    const kehadiran = document.getElementById("kehadiran").value;
+    const ucapan = document.getElementById("ucapan").value;
+
+    // validasi
+    if(nama === "" || kehadiran === ""){
+        alert("Lengkapi form terlebih dahulu");
+        return;
+    }
+
+    // push ke firebase
+    db.push({
+        nama: nama,
+        kehadiran: kehadiran,
+        ucapan: ucapan,
+        waktu: Date.now()
+    });
+
+    // reset form
+    document.getElementById("nama").value = "";
+    document.getElementById("kehadiran").value = "";
+    document.getElementById("ucapan").value = "";
+
+}
+
+// =========================
+// AMBIL DATA REALTIME
+// =========================
+
+db.on("child_added", function(snapshot){
+
+    const data = snapshot.val();
+
+    const wishList = document.getElementById("wishList");
+
+    // avatar huruf pertama
+    const avatar = data.nama.charAt(0).toUpperCase();
+
+    // status hadir
+    const hadirText =
+        data.kehadiran === "hadir"
+        ? "💖 Hadir"
+        : "🙏 Tidak Hadir";
+
+    // buat item
+    const item = document.createElement("div");
+
+    item.classList.add("wish-item");
+
+    item.innerHTML = `
+    
+        <div class="wish-avatar">
+            ${avatar}
+        </div>
+
+        <div class="wish-content">
+
+            <div class="wish-name">
+                ${data.nama}
+            </div>
+
+            <div class="wish-present">
+                ${hadirText}
+            </div>
+
+            <div class="wish-message">
+                ${data.ucapan || "Turut berbahagia 💖"}
+            </div>
+
+        </div>
+
+    `;
+
+    // tampil paling atas
+    wishList.prepend(item);
+
+});
+
+</script>
 
 <script>
 
@@ -1946,6 +1987,10 @@ form.addEventListener("submit", function(e){
 });
 
 </script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
 </body>
 </html>
