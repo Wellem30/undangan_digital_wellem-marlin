@@ -2000,17 +2000,19 @@ form.addEventListener("submit", function(e){
 
 });
 
-const urlParams = new URLSearchParams(window.location.search);
+</script>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
 const nama = urlParams.get("to");
 
-const target = document.getElementById("namaUndangan");
+const target = document.getElementById("nama_undangan");
 
 if (nama) {
     target.textContent = decodeURIComponent(nama);
 } else {
     target.textContent = "Tamu Undangan";
 }
-
 </script>
 
 </body>
